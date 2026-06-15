@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset = "UTF-8">
+	<title>BMP280 Temperature Monitor </title>
+</head>
+<body>
+
+<h2>BMP280 Temperature System </h2>
+
+<button onclick = "getTemp()"> Get Temperature</button>
+
+<h3 id = "result" > Click the button </h3>
+
+<script>
+function getTemp() {
+	fetch("/get_temp")
+	.then(response => response.json() )
+	.then(data => {
+		document.getElementById("result").innerText =
+			"Current Temperature: " + data.temperature + "C";
+	})
+	.catch(error => {
+		document.getElementById("result").innerText =
+			"Error";
+		console.log(error);
+	});
+}
+</script>
+
